@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat IA amélioré 🤖</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+
+        .box {
+            width: 350px;
+            margin: auto;
+            margin-top: 60px;
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            background: cyan;
+            border: none;
+            cursor: pointer;
+        }
+
+        #chat {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .msg {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .user { background: #38bdf8; color: black; }
+        .bot { background: #334155; }
+    </style>
+</head>
+
+<body>
+
+<h1>🤖 Chat IA amélioré</h1>
+
+<div class="box">
+
+    <input type="text" id="input" placeholder="Pose une question...">
+    <button onclick="send()">Envoyer</button>
+
+    <div id="chat"></div>
+
+</div>
+
+<script>
+function addMsg(text, type){
+    let div = document.createElement("div");
+    div.className = "msg " + type;
+    div.innerText = text;
+    document.getElementById("chat").appendChild(div);
+}
+
+function botResponse(msg){
+    msg = msg.toLowerCase();
+
+    if(msg.includes("bonjour") || msg.includes("salut")){
+        return "👋 Salut ! Comment puis-je t'aider ?";
+    }
+
+    if(msg.includes("qui es tu")){
+        return "🤖 Je suis un assistant créé par toi !";
+    }
+
+    if(msg.includes("anime")){
+        return "🔥 J'aime Naruto, One Piece et Attack on Titan !";
+    }
+
+    if(msg.includes("manga")){
+        return "📚 Les mangas sont incroyables !";
+    }
+
+    if(msg.includes("blague")){
+        return "😂 Pourquoi les poissons n’aiment pas l’ordinateur ? Parce qu’ils ont peur du net !";
+    }
+
+    if(msg.includes("merci")){
+        return "😊 Avec plaisir !";
+    }
+
+    return "🤔 Je ne comprends pas encore cette question, mais j’apprends !";
+}
+
+function send(){
+    let input = document.getElementById("input");
+    let text = input.value;
+
+    if(text === "") return;
+
+    addMsg("Toi: " + text, "user");
+    addMsg("Bot: " + botResponse(text), "bot");
+
+    input.value = "";
+}
+</script>
+
+</body>
+</html>
